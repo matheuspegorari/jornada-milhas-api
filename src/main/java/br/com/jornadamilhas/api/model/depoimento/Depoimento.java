@@ -24,6 +24,7 @@ public class Depoimento {
         this.nome = dados.nome();
         this.imagem_url = dados.imagem_url();
         this.depoimento = dados.depoimento();
+        this.ativo = true;
     }
 
     public void atualizar(DadosAtualizacaoDepoimento dados) {

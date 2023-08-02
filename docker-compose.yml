@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  db:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: milhas_api
+    ports:
+      - "3306:3306"
+    volumes:
+      - henkei_data:/var/lib/mysql
+
+volumes:
+  henkei_data:
