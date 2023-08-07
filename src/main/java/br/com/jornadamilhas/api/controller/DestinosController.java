@@ -19,8 +19,11 @@ import java.util.List;
 @RequestMapping("/destinos")
 public class DestinosController {
 
-    @Autowired
-    private DestinosRepository repository;
+    private final DestinosRepository repository;
+
+    public DestinosController(DestinosRepository repository) {
+        this.repository = repository;
+    }
 
     @PostMapping
     @Transactional
@@ -66,7 +69,13 @@ public class DestinosController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletarDestino(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> deletarDestino(@PathVariable("id") Long id) {
+        if (repository.findDestinoById(id) == null){
+            return new ResponseEntity<>(
+                    new ErrorMessage("Nenhum destino foi encontrado"),
+                    HttpStatus.NOT_FOUND);
+        }
         repository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
