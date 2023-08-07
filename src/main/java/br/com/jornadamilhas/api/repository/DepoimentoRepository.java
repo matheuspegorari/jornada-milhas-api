@@ -1,5 +1,6 @@
-package br.com.jornadamilhas.api.model.depoimento;
+package br.com.jornadamilhas.api.repository;
 
+import br.com.jornadamilhas.api.model.Depoimento;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

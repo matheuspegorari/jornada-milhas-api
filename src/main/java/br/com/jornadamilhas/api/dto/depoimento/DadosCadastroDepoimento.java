@@ -1,4 +1,4 @@
-package br.com.jornadamilhas.api.model.depoimento;
+package br.com.jornadamilhas.api.dto.depoimento;
 
 import jakarta.validation.constraints.NotBlank;
 

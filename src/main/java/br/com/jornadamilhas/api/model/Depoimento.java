@@ -1,5 +1,7 @@
-package br.com.jornadamilhas.api.model.depoimento;
+package br.com.jornadamilhas.api.model;
 
+import br.com.jornadamilhas.api.dto.depoimento.DadosAtualizacaoDepoimento;
+import br.com.jornadamilhas.api.dto.depoimento.DadosCadastroDepoimento;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

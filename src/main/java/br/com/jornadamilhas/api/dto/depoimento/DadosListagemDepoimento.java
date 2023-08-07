@@ -1,4 +1,6 @@
-package br.com.jornadamilhas.api.model.depoimento;
+package br.com.jornadamilhas.api.dto.depoimento;
+
+import br.com.jornadamilhas.api.model.Depoimento;
 
 public record DadosListagemDepoimento(
         Long id,

@@ -1,10 +1,10 @@
 package br.com.jornadamilhas.api.controller;
 
-import br.com.jornadamilhas.api.model.depoimento.DadosAtualizacaoDepoimento;
-import br.com.jornadamilhas.api.model.depoimento.DadosListagemDepoimento;
-import br.com.jornadamilhas.api.model.depoimento.DadosCadastroDepoimento;
-import br.com.jornadamilhas.api.model.depoimento.Depoimento;
-import br.com.jornadamilhas.api.model.depoimento.DepoimentoRepository;
+import br.com.jornadamilhas.api.dto.depoimento.DadosAtualizacaoDepoimento;
+import br.com.jornadamilhas.api.dto.depoimento.DadosCadastroDepoimento;
+import br.com.jornadamilhas.api.dto.depoimento.DadosListagemDepoimento;
+import br.com.jornadamilhas.api.model.Depoimento;
+import br.com.jornadamilhas.api.repository.DepoimentoRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
