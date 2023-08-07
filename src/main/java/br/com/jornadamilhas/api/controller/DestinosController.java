@@ -4,11 +4,13 @@ import br.com.jornadamilhas.api.dto.destino.DadosAtualizacaoDestino;
 import br.com.jornadamilhas.api.dto.destino.DadosCadastroDestino;
 import br.com.jornadamilhas.api.dto.destino.DadosListagemDestino;
 import br.com.jornadamilhas.api.exception.ErrorMessage;
+import br.com.jornadamilhas.api.integration.ChatGPTIntegrationService;
 import br.com.jornadamilhas.api.model.Destino;
 import br.com.jornadamilhas.api.repository.DestinosRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,14 +22,31 @@ import java.util.List;
 public class DestinosController {
 
     private final DestinosRepository repository;
+    private final ChatGPTIntegrationService gpt = new ChatGPTIntegrationService();
 
     public DestinosController(DestinosRepository repository) {
         this.repository = repository;
     }
 
+
     @PostMapping
     @Transactional
     public ResponseEntity<Destino> cadastrarDestino(@RequestBody @Valid DadosCadastroDestino dados) {
+        String texto = dados.texto();
+
+        if (StringUtils.isEmpty(texto)) {
+            texto = StringUtils.trim(gpt.geraTextoDestino(dados.nome()));
+            DadosCadastroDestino novosDados = new DadosCadastroDestino(
+                    dados.imagem_url1(),
+                    dados.imagem_url2(),
+                    dados.nome(),
+                    dados.meta(),
+                    texto,
+                    dados.preco()
+            );
+            var destino = repository.save(new Destino(novosDados));
+            return new ResponseEntity<>(destino, HttpStatus.CREATED);
+        }
         var destino = repository.save(new Destino(dados));
         return new ResponseEntity<>(destino, HttpStatus.CREATED);
     }

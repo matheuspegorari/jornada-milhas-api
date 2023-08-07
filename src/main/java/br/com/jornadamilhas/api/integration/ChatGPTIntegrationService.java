@@ -10,12 +10,11 @@ public class ChatGPTIntegrationService {
     private final OpenAiService service = new OpenAiService(API_KEY);
     public String geraTextoDestino(String destino) {
 
-
         String prompt =
                 String.format("Aja como um redator para um site de venda de viagens. " +
                         "Faça um resumo sobre o local %s. Enfatize os pontos positivos da cidade." +
                         "Utilize uma linguagem informal. " +
-                        "Cite no ideias de passeios neste lugar. " +
+                        "Cite ideias de passeios neste lugar. " +
                         "Crie 2 parágrafos neste resumo.", destino);
 
         CompletionRequest request = CompletionRequest.builder()
@@ -30,6 +29,4 @@ public class ChatGPTIntegrationService {
                 .get(0)
                 .getText();
     }
-
-
 }

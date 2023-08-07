@@ -2,14 +2,11 @@ package br.com.jornadamilhas.api.model;
 
 import br.com.jornadamilhas.api.dto.destino.DadosAtualizacaoDestino;
 import br.com.jornadamilhas.api.dto.destino.DadosCadastroDestino;
-import br.com.jornadamilhas.api.integration.ChatGPTIntegrationService;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
-
 import java.math.BigDecimal;
 
 @Entity(name = "Destinos")
@@ -34,12 +31,7 @@ public class Destino {
         this.imagem_url2 = dados.imagem_url2();
         this.nome = dados.nome();
         this.meta = dados.meta();
-        if (dados.texto() == null ||dados.texto().isEmpty()) {
-            ChatGPTIntegrationService gpt = new ChatGPTIntegrationService();
-            this.texto = StringUtils.trim(gpt.geraTextoDestino(dados.nome()));
-        } else {
-            this.texto = dados.texto();
-        }
+        this.texto = dados.texto();
         this.preco = dados.preco();
     }
 
